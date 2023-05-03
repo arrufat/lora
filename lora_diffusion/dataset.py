@@ -61,11 +61,38 @@ STYLE_TEMPLATE = [
     "a large painting in the style of {}",
 ]
 
+SUBJECT_TEMPLATE = [
+    "a photo of {}",
+    "a cropped photo of {}",
+    "a bright photo of {}",
+    "a cropped photo of {}",
+    "a good photo of {}",
+    "a close-up photo of{}",
+    "a picture of {}",
+    "a cropped picture of {}",
+    "a bright picture of {}",
+    "a cropped picture of {}",
+    "a good picture of {}",
+    "a close-up picture of {}",
+]
+
+CUSTOM_TEMPLATE = [
+    "a bright picture in the style of {}",
+    "a cool picture in the style of {}",
+    "a good picture in the style of {}",
+    "a nice picture in the style of {}",
+    "a picture in the style of {}",
+    "a rendering in the style of {}",
+    "a rendition in the style of {}",
+]
+
 NULL_TEMPLATE = ["{}"]
 
 TEMPLATE_MAP = {
     "object": OBJECT_TEMPLATE,
     "style": STYLE_TEMPLATE,
+    "subject": SUBJECT_TEMPLATE,
+    "custom": CUSTOM_TEMPLATE,
     "null": NULL_TEMPLATE,
 }
 

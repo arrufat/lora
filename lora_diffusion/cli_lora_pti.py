@@ -701,7 +701,7 @@ def train(
     pretrained_vae_name_or_path: str = None,
     revision: Optional[str] = None,
     perform_inversion: bool = True,
-    use_template: Literal[None, "object", "style"] = None,
+    use_template: Literal[None, "object", "style", "subject", "custom"] = None,
     train_inpainting: bool = False,
     placeholder_tokens: str = "",
     placeholder_token_at_data: Optional[str] = None,
