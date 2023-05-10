@@ -1158,10 +1158,27 @@ def save_all(
 
             loras["unet"] = (unet, target_replace_module_unet)
             loras["text_encoder"] = (text_encoder, target_replace_module_text)
+
+            # save the LoRA weights in a WebUI-compatible format
             save_safeloras_for_webui(
-                loras,
-                outpath=save_path.replace(".safetensors", "_webui.safetensors")
+                modelmap=loras,
+                embeds={},
+                outpath=save_path.replace(".safetensors", "_lorawebui.safetensors"),
             )
+
+            # save the embeddings separately while finetuning LoRA
+            for tok, tok_id in zip(placeholder_tokens, placeholder_token_ids):
+                learned_embeds = text_encoder.get_input_embeddings().weight[tok_id]
+                print(
+                    f"Current Learned Embeddings for {tok}:, id {tok_id} ",
+                    learned_embeds[:4],
+                )
+                embeds[tok] = learned_embeds.detach().cpu()
+                save_safeloras_with_embeds(
+                    modelmap={},
+                    embeds=embeds,
+                    outpath=save_path.replace(".safetensors", "_embeddings.safetensors"),
+                )
 
         if save_ti:
             for tok, tok_id in zip(placeholder_tokens, placeholder_token_ids):
